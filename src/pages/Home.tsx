@@ -1,39 +1,71 @@
-import { Header } from "@/components/ui/Header";
-import { useAuth } from "@/lib/auth";
+import React from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { 
+  Card, 
+  CardContent, 
+  CardDescription, 
+  CardFooter, 
+  CardHeader, 
+  CardTitle 
+} from "@/components/ui/card";
 
 export default function Home() {
-  const { user } = useAuth();
-  
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
+    <div className="container mx-auto px-4 py-8">
+      <div className="text-center mb-12">
+        <h1 className="text-4xl font-bold tracking-tight mb-4">Welcome to Our Application</h1>
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          A modern application built with React, Tailwind CSS, and shadcn/ui components.
+        </p>
+      </div>
       
-      <main className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto">
-          {user ? (
-            <div className="bg-white rounded-lg shadow p-6">
-              <h1 className="text-3xl font-bold">Welcome back, {user.username}!</h1>
-              <p className="mt-2 text-gray-600">
-                You have successfully logged in to your account.
-              </p>
-              <div className="mt-6 p-4 bg-gray-100 rounded-md">
-                <h2 className="font-semibold">Account Details:</h2>
-                <div className="mt-2 space-y-1">
-                  <p><span className="font-medium">Username:</span> {user.username}</p>
-                  <p><span className="font-medium">Email:</span> {user.email}</p>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="text-center">
-              <h1 className="text-3xl font-bold">Welcome to My App</h1>
-              <p className="mt-4 text-xl text-gray-600">
-                Please log in to access your dashboard.
-              </p>
-            </div>
-          )}
-        </div>
-      </main>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <Card>
+          <CardHeader>
+            <CardTitle>Feature One</CardTitle>
+            <CardDescription>Discover our primary features</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p>Explore the powerful capabilities of our application.</p>
+          </CardContent>
+          <CardFooter>
+            <Button asChild>
+              <Link to="/features">Learn More</Link>
+            </Button>
+          </CardFooter>
+        </Card>
+        
+        <Card>
+          <CardHeader>
+            <CardTitle>About Us</CardTitle>
+            <CardDescription>Our story and mission</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p>Learn about who we are and what drives our work.</p>
+          </CardContent>
+          <CardFooter>
+            <Button asChild>
+              <Link to="/about">About Us</Link>
+            </Button>
+          </CardFooter>
+        </Card>
+        
+        <Card>
+          <CardHeader>
+            <CardTitle>Get Started</CardTitle>
+            <CardDescription>Begin your journey</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p>Start using our application with our easy onboarding process.</p>
+          </CardContent>
+          <CardFooter>
+            <Button asChild>
+              <Link to="/get-started">Get Started</Link>
+            </Button>
+          </CardFooter>
+        </Card>
+      </div>
     </div>
   );
 }
